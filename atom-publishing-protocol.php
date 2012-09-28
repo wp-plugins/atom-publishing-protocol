@@ -107,9 +107,28 @@ class AtomPublishingProtocol {
 	 */
 	function rewrite( $rules ) {
 		$rewrites = $rules;
-		unset( $rewrites['.*wp-app\.php$'] );
+		unset( $rewrites['.*wp-app\.php$'], $rewrites['.*wp-app\.php/?(.+)?$'] );
 		
 		return $rewrites;
 	}
 }
 AtomPublishingProtocol::get_instance();
+
+/**
+ * Writes logging info to a file.
+ *
+ * @since WP 2.2.0
+ * @deprecated WP 3.4.0
+ * @deprecated Use error_log()
+ * @link http://www.php.net/manual/en/function.error-log.php
+ *
+ * @param string $label Type of logging
+ * @param string $msg Information describing logging reason.
+ */
+if ( ! function_exists( 'log_app' ) ) {
+	function log_app( $label, $msg ) {
+		_deprecated_function( __FUNCTION__, '3.4', 'error_log()' );
+		if ( ! empty( $GLOBALS['app_logging'] ) )
+			error_log( $label . ' - ' . $msg );
+	}
+}
