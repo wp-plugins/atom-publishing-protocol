@@ -52,7 +52,7 @@ class AtomPublishingProtocol {
 		// Handle the request
 		$wp_atom_server->handle_request();
 
-		exit( 'YES' );
+		exit();
 	}
 	
 	function filters() {
