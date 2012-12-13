@@ -3,7 +3,7 @@ Contributors: wordpressdotorg, wonderboymusic
 Tags: atom
 Requires at least: 3.0
 Tested up to: 3.5
-Stable Tag: 0.1
+Stable Tag: 1.0.1
 
 Atom Publishing Protocol support for WordPress
 
