@@ -33,6 +33,11 @@ class AtomPublishingProtocol {
 		if ( false === strpos( $_SERVER['REQUEST_URI'], '/wp-app.php' ) )
 			return;
 
+		add_filter( 'option_enable_app', '__return_true' );
+
+		if ( file_exists( ABSPATH . 'wp-app.php' ) )
+			return;
+
 		/**
 		 * WordPress is handling an Atom Publishing Protocol request.
 		 *
@@ -58,8 +63,6 @@ class AtomPublishingProtocol {
 	}
 
 	function filters() {
-		add_filter( 'option_enable_app', '__return_true' );
-
 		add_action( 'xmlrpc_rsd_apis', array( $this, 'rsd_api' ) );
 
 		add_action( 'publish_post', array( $this, 'publish_post' ) );
