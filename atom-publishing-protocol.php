@@ -5,7 +5,7 @@ Plugin URI: http://wordpress.org
 Author: wordpressdotorg
 Author URI: http://wordpress.org
 Description: Atom Publishing Protocol support for WordPress
-Version: 1.0.1
+Version: 1.0.2
 */
 
 /** Atom Publishing Protocol Class */
