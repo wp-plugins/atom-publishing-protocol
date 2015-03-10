@@ -29,7 +29,7 @@ class AtomPublishingProtocol {
 		add_action( 'init', array( $this, 'init' ) );
 	}
 
-	function init() {
+	public function init() {
 		if ( false === strpos( $_SERVER['REQUEST_URI'], '/wp-app.php' ) )
 			return;
 
@@ -62,7 +62,7 @@ class AtomPublishingProtocol {
 		exit();
 	}
 
-	function filters() {
+	public function filters() {
 		add_action( 'xmlrpc_rsd_apis', array( $this, 'rsd_api' ) );
 
 		add_action( 'publish_post', array( $this, 'publish_post' ) );
@@ -80,7 +80,7 @@ class AtomPublishingProtocol {
 	 * Add the Atom API to the RSD list
 	 *
 	 */
-	function rsd_api() {
+	public function rsd_api() {
 		printf( '<api name="Atom" blogID="" preferred="false" apiLink="%s" />', site_url( 'wp-app.php/service', 'rpc' ) );
 	}
 
@@ -89,11 +89,11 @@ class AtomPublishingProtocol {
 	 *
 	 * @param int $post_id
 	 */
-	function publish_post( $post_id ) {
+	public function publish_post( $post_id ) {
 		do_action( 'app_publish_post', $post_id );
 	}
 
-	function die_handler( $handler ) {
+	public function die_handler( $handler ) {
 		return '_scalar_wp_die_handler';
 	}
 
@@ -102,7 +102,7 @@ class AtomPublishingProtocol {
 	 *
 	 * @param WP $request
 	 */
-	function request( &$request ) {
+	public function request( &$request ) {
 		$request->set_query_var( 'error', '' );
 	}
 
@@ -112,7 +112,7 @@ class AtomPublishingProtocol {
 	 * @param array $rules Map of $regex => $query
 	 * @return array
 	 */
-	function rewrite( $rules ) {
+	public function rewrite( $rules ) {
 		$rewrites = $rules;
 		unset( $rewrites['.*wp-app\.php$'], $rewrites['.*wp-app\.php/?(.+)?$'] );
 
